@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <div th:replace="partials/partials.html :: head"></div>
-    <title>Welcome</title>
-</head>
+<head th:replace="partials/partials :: head('Welcome')"></head>
 <body>
 
 <nav th:replace="partials/partials.html :: navbar"></nav>
