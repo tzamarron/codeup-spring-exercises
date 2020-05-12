@@ -8,19 +8,25 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<div class="alert" th:if="${dice == guess}">
-    <h1>Great guess!</h1>
+<!-- Container to hold everything -->
+<div>
+    <!-- Display message on right or not -->
+    <div class="alert text-center">
+        <h1 th:text="${message}"></h1>
+    </div>
+
+    <!-- Displays result of the dice number and the guess -->
+    <div class="text-center">
+        <h2>Results</h2>
+        <p>Dice : <span th:text="${dice}"></span></p>
+        <p>Your Guess : <span th:text="${guess}"></span></p>
+
+        <!-- Button to take you back to the start of game -->
+        <button><a href="/roll-dice">Try Again?</a></button>
+    </div>
+
+    <div th:replace="partials/partials.html :: JS"></div>
 </div>
-<div class="alert" th:unless="${dice == guess}">
-    <h1>Aw good guess though</h1>
-</div>
 
-<h2>Results</h2>
-<p>Dice : <span th:text="${dice}"></span></p>
-<p>Your Guess : <span th:text="${guess}"></span></p>
-
-<button><a href="/roll-dice">Try Again?</a></button>
-
-<div th:replace="partials/partials.html :: JS"></div>
 </body>
 </html>

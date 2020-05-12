@@ -8,19 +8,27 @@
 <body>
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<h1>Guess the number!</h1>
-<p>Choose a number that the dice landed on!</p>
-<div>
-    <form action="/roll-dice" method="post">
-        <button type="submit" name="guess" value="1">1</button>
-        <button type="submit" name="guess" value="2">2</button>
-        <button type="submit" name="guess" value="3">3</button>
-        <button type="submit" name="guess" value="4">4</button>
-        <button type="submit" name="guess" value="5">5</button>
-        <button type="submit" name="guess" value="6">6</button>
-    </form>
+<!-- Container to hold everything -->
+<div class="text-center">
+
+    <!-- Main text for game -->
+    <h1>Guess the number!</h1>
+    <p>Choose a number that the dice landed on!</p>
+
+    <!-- Buttons for each guess -->
+    <div>
+        <form action="/roll-dice" method="post">
+            <button type="submit" name="guess" value="1">1</button>
+            <button type="submit" name="guess" value="2">2</button>
+            <button type="submit" name="guess" value="3">3</button>
+            <button type="submit" name="guess" value="4">4</button>
+            <button type="submit" name="guess" value="5">5</button>
+            <button type="submit" name="guess" value="6">6</button>
+        </form>
+    </div>
+
+    <div th:replace="partials/partials.html :: JS"></div>
 </div>
 
-<div th:replace="partials/partials.html :: JS"></div>
 </body>
 </html>
