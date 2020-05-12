@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="partials/partials.html :: head"></div>
+</head>
+<body>
+<nav th:replace="partials/partials.html :: navbar"></nav>
+
+<h1>Guess the number!</h1>
+<p>Choose a number that the dice landed on!</p>
+<div>
+    <form action="/roll-dice" method="post">
+        <button type="submit" name="guess" value="1">1</button>
+        <button type="submit" name="guess" value="2">2</button>
+        <button type="submit" name="guess" value="3">3</button>
+        <button type="submit" name="guess" value="4">4</button>
+        <button type="submit" name="guess" value="5">5</button>
+        <button type="submit" name="guess" value="6">6</button>
+    </form>
+</div>
+
+<div th:replace="partials/partials.html :: footer"></div>
+</body>
+</html>

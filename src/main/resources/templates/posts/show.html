@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="partials/partials.html :: head"></div>
+</head>
+<body>
+<nav th:replace="partials/partials.html :: navbar"></nav>
+
+<h2>Selected Post</h2>
+<p style="font-weight: bold;" th:text="${post.title}"></p>
+<p style="padding-left: 2rem" th:text="${post.description}"></p>
+
+<div th:replace="partials/partials.html :: footer"></div>
+</body>
+</html>

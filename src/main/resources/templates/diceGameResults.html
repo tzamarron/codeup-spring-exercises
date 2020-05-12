@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <div th:replace="partials/partials.html :: head"></div>
+</head>
+<body>
+<nav th:replace="partials/partials.html :: navbar"></nav>
+
+<div class="alert" th:if="${dice == guess}">
+    <h1>Great guess!</h1>
+</div>
+<div class="alert" th:unless="${dice == guess}">
+    <h1>Aw good guess though</h1>
+</div>
+
+<h2>Results</h2>
+<p>Dice : <span th:text="${dice}"></span></p>
+<p>Your Guess : <span th:text="${guess}"></span></p>
+
+<button><a href="/roll-dice">Try Again?</a></button>
+
+<div th:replace="partials/partials.html :: footer"></div>
+</body>
+</html>
