@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<!-- Head Partial -->
 <head th:replace="partials/partials :: head('Welcome')"></head>
 <body>
-
+<!-- Navbar Partial -->
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<h1>Welcome To My Site!</h1>
+<!-- Main Container -->
+<div id="main-container">
 
-<div th:replace="partials/partials.html :: JS"></div>
+    <h1>Welcome To My Site!</h1>
+
+    <!-- Scripts Partial -->
+    <div th:replace="partials/partials.html :: JS"></div>
+</div>
 
 </body>

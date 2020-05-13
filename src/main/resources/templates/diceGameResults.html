@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Head Partial -->
 <head th:replace="partials/partials :: head('Dice Results')"></head>
 <body>
+<!-- Navbar Partial -->
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<!-- Container to hold everything -->
-<div>
+<!-- Main Container -->
+<div id="main-container">
+
     <!-- Display message on right or not -->
     <div class="alert text-center">
         <h1 th:text="${message}"></h1>
@@ -21,6 +24,7 @@
         <button><a href="/roll-dice">Try Again?</a></button>
     </div>
 
+    <!-- Scripts Partial -->
     <div th:replace="partials/partials.html :: JS"></div>
 </div>
 </body>

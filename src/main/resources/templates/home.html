@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<!-- Head partial -->
 <head th:replace="partials/partials :: head('Homepage')"></head>
 <body>
+<!-- NavBar partial -->
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<h1>This is the home page</h1>
+<!-- Main Container Start -->
+<div id="main-container">
+    <h1>This is the home page</h1>
 
-<div th:replace="partials/partials.html :: JS"></div>
+
+    <!-- Scripts partial -->
+    <div th:replace="partials/partials.html :: JS"></div>
+</div>
+<!-- Main Container End -->
 </body>
 </html>

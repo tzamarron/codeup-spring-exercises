@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--Head Partial -->
 <head th:replace="partials/partials :: head('Posts')"></head>
 <body>
+<!-- Navbar Partial -->
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<h2>All the Ads</h2>
-<div th:each="post : ${posts}">
-    <p style="font-weight: bold;" th:text="${post.title}"></p>
-    <p style="padding-left: 2rem" th:text="${post.description}"></p>
+<!-- Main Container -->
+<div id="main-container">
+    <!-- Title -->
+    <h2>All the Ads</h2>
+
+    <!-- Area to show all the posts -->
+    <div th:each="post : ${posts}">
+        <p style="font-weight: bold;" th:text="${post.title}"></p>
+        <p style="padding-left: 2rem" th:text="${post.description}"></p>
+    </div>
+
+    <!-- Scripts Partial -->
+    <div th:replace="partials/partials.html :: JS"></div>
 </div>
-
-
-<div th:replace="partials/partials.html :: JS"></div>
 </body>
 </html>
