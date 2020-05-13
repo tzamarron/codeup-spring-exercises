@@ -12,6 +12,19 @@
     <h2>Selected Post</h2>
     <p style="font-weight: bold;" th:text="${post.title}"></p>
     <p style="padding-left: 2rem" th:text="${post.description}"></p>
+    <a class="btn" th:href="@{'/posts/update/' + ${post.id}}">Update</a>
+    <div>
+        <form action="/posts/delete" method="post">
+            <button type="submit" name="id" th:value="${post.id}">Delete</button>
+        </form>
+    </div>
+
+<!--    <div>-->
+<!--        <form method="post">-->
+<!--            <a class="btn" th:formaction="'/posts/delete/' + ${post.id}">Delete Post</a>-->
+<!--        </form>-->
+<!--    </div>-->
+
 
     <!-- Scripts Partial-->
     <div th:replace="partials/partials.html :: JS"></div>

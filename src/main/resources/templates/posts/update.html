@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Head Partial -->
+<head th:replace="partials/partials :: head('Homepage')"></head>
+<body>
+<!-- Navbar Partial -->
+<nav th:replace="partials/partials.html :: navbar"></nav>
+
+<!-- Main Container -->
+<div id="main-container">
+
+    <!-- Form to Update Post -->
+    <form th:action="@{'/posts/update/' + ${post.id}}" th:method="post">
+        <div class="form-group">
+            <label for="postTitle">Title</label>
+            <input type="text" class="form-control" id="postTitle" name="postTitle" th:value="${post.title}">
+        </div>
+        <div class="form-group">
+            <label for="postDescription">Description</label>
+            <input type="text" class="form-control" id="postDescription" name="postDescription" th:value="${post.description}">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Post</button>
+    </form>
+
+
+    <!-- Footer Partial -->
+    <div th:replace="partials/partials.html :: JS"></div>
+</div>
+</body>
+</html>

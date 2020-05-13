@@ -9,13 +9,15 @@
 <!-- Main Container -->
 <div id="main-container">
     <!-- Title -->
-    <h2>All the Ads</h2>
+    <h2>All the Posts</h2>
 
     <!-- Area to show all the posts -->
     <div th:each="post : ${posts}">
-        <p style="font-weight: bold;" th:text="${post.title}"></p>
+        <p style="font-weight: bold" th:text="${post.title}"></p>
         <p style="padding-left: 2rem" th:text="${post.description}"></p>
+        <a th:href="@{'/posts/' + ${post.id}}">Read More</a>
     </div>
+<!--        <div th:remove="tag" th:utext="${posts}"></div>-->
 
     <!-- Scripts Partial -->
     <div th:replace="partials/partials.html :: JS"></div>
