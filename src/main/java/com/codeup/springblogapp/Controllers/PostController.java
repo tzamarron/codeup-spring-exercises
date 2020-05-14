@@ -147,7 +147,7 @@ public class PostController {
     @PostMapping("/posts/delete")
 
     // Method that deletes Post based on info POSTED by button in posts/show.html
-    public String deletePost(@RequestParam(name="id") long id, Model model){
+    public String deletePost(@RequestParam(name="id") long id){
 
         // Get Post by id from database and store to new Post
         Post post = postRepo.getOne(id);
