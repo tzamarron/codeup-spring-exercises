@@ -1,35 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!-- Head Partial -->
+<!--/* Head Partial */-->
 <head th:replace="partials/partials :: head('Post')"></head>
 <body>
-<!-- Navbar Partial-->
+<!--/* Navbar Partial*/-->
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<!-- Main Container -->
+<!--/* Main Container */-->
 <div id="main-container">
 
-    <!-- Main Header -->
+    <!--/* Main Header */-->
     <h2>Selected Post</h2>
 
-    <!-- Using attribute passed from PostController/Line 68
-    set the Posts title and description with inline styling -->
+    <!--/* Using attribute passed from PostController/Line 68
+    set the Posts title and description with inline styling */-->
     <p style="font-weight: bold;" th:text="${post.title}"></p>
     <p style="padding-left: 2rem" th:text="${post.description}"></p>
 
-    <!-- Anchor tag that links to PostController/Line 105 -->
+    <!--/* Anchor tag that links to PostController/Line 105 */-->
     <a class="btn" th:href="@{'/posts/update/' + ${post.id}}">Update</a>
 
-    <!-- In a div (easy to style) a button is placed within a form to
-        submit the Post's id to PostController/Line 122 -->
+    <!--/* In a div (easy to style) a button is placed to open a model
+        inside the model there is a form to submit the Post's id to 
+        PostController/Line 122 */-->
     <div>
 
-        <!-- Button trigger modal -->
+        <!--/* Button trigger modal */-->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deletePost">
             Delete
         </button>
 
-        <!-- Modal -->
+        <!--/* Modal */-->
         <div class="modal fade" id="deletePost" tabindex="-1" role="dialog" aria-labelledby="deleteConfirm" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -53,17 +54,17 @@
         </div>
     </div>
 
-    <!-- Other example -->
-<!--    <div>-->
-<!--        <form method="post">-->
-<!--            <a class="btn" th:formaction="'/posts/delete/' + ${post.id}">Delete Post</a>-->
-<!--        </form>-->
-<!--    </div>-->
+    <!--/* Other example */-->
+<!--/*    <div>*/-->
+<!--/*        <form method="post">*/-->
+<!--/*            <a class="btn" th:formaction="'/posts/delete/' + ${post.id}">Delete Post</a>*/-->
+<!--/*        </form>*/-->
+<!--/*    </div>*/-->
 
 
-    <!-- Scripts Partial-->
+    <!--/* Scripts Partial*/-->
     <div th:replace="partials/partials.html :: JS"></div>
 </div>
-<!-- Main Container -->
+<!--/* Main Container */-->
 </body>
 </html>

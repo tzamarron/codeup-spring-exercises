@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<!-- Head Partial -->
+<!--/* Head Partial */-->
 <head th:replace="partials/partials :: head('Homepage')"></head>
 <body>
-<!-- Navbar Partial -->
+<!--/* Navbar Partial */-->
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
-<!-- Main Container -->
+<!--/* Main Container */-->
 <div id="main-container">
 
-    <!-- Form to Create Post and submit it to PostContoller/Line 84 -->
+    <!--/* Form to Create Post and submit it to PostContoller/Line 84 */-->
     <form action="/posts/createPost" method="post">
 
-        <!-- Title Input -->
+        <!--/* Title Input */-->
         <div class="form-group">
             <label for="postTitle">Title</label>
             <input type="text" class="form-control" id="postTitle" name="postTitle">
         </div>
 
-        <!-- Description Input -->
+        <!--/* Description Input */-->
         <div class="form-group">
             <label for="postDescription">Description</label>
             <input type="text" class="form-control" id="postDescription" name="postDescription">
         </div>
 
-        <!-- Button to submit -->
+        <!--/* Button to submit */-->
         <button type="submit" class="btn btn-primary">Create Post</button>
     </form>
-    <!-- Form End -->
+    <!--/* Form End */-->
 
 
 
@@ -35,9 +35,9 @@
 
 
 
-    <!-- Footer Partial -->
+    <!--/* Footer Partial */-->
     <div th:replace="partials/partials.html :: JS"></div>
 </div>
-<!-- Main Container -->
+<!--/* Main Container */-->
 </body>
 </html>
