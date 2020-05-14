@@ -9,16 +9,26 @@
 <!-- Main Container -->
 <div id="main-container">
 
+    <!-- Main Header -->
     <h2>Selected Post</h2>
+
+    <!-- Using attribute passed from PostController/Line 68
+    set the Posts title and description with inline styling -->
     <p style="font-weight: bold;" th:text="${post.title}"></p>
     <p style="padding-left: 2rem" th:text="${post.description}"></p>
+
+    <!-- Anchor tag that links to PostController/Line 105 -->
     <a class="btn" th:href="@{'/posts/update/' + ${post.id}}">Update</a>
+
+    <!-- In a div (easy to style) a button is placed within a form to
+        submit the Post's id to PostController/Line 122 -->
     <div>
         <form action="/posts/delete" method="post">
             <button type="submit" name="id" th:value="${post.id}">Delete</button>
         </form>
     </div>
 
+    <!-- Other example -->
 <!--    <div>-->
 <!--        <form method="post">-->
 <!--            <a class="btn" th:formaction="'/posts/delete/' + ${post.id}">Delete Post</a>-->
@@ -29,5 +39,6 @@
     <!-- Scripts Partial-->
     <div th:replace="partials/partials.html :: JS"></div>
 </div>
+<!-- Main Container -->
 </body>
 </html>

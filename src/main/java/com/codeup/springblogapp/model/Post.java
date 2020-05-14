@@ -4,14 +4,17 @@ import javax.persistence.*;
 
 @Entity
 public class Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(nullable = false, length = 100)
-    private String title;
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String description;
+    @Id // Set as Primary Key
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Set to Auto-Increment
+    private long id; // Set to BIGINT due to being long
 
+    @Column(nullable = false, length = 100) // set to NOT NULL and max length of 100 characters
+    private String title; // Set to VARCHAR due to being a String
+
+    @Column(nullable = false, columnDefinition = "TEXT") // set to NOT NULL and TEXT type
+    private String description; // Due to above definition it is set to TEXT and not VARCHAR
+
+    // Constructors
     public Post(){};
 
     public Post(long id, String title, String description) {
@@ -25,6 +28,7 @@ public class Post {
         this.description = description;
     }
 
+    // Getters and Setters
     public long getId() {
         return id;
     }

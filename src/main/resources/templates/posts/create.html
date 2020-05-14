@@ -9,18 +9,25 @@
 <!-- Main Container -->
 <div id="main-container">
 
-    <!-- Form to Create Post -->
+    <!-- Form to Create Post and submit it to PostContoller/Line 84 -->
     <form action="/posts/createPost" method="post">
+
+        <!-- Title Input -->
         <div class="form-group">
             <label for="postTitle">Title</label>
             <input type="text" class="form-control" id="postTitle" name="postTitle">
         </div>
+
+        <!-- Description Input -->
         <div class="form-group">
             <label for="postDescription">Description</label>
             <input type="text" class="form-control" id="postDescription" name="postDescription">
         </div>
+
+        <!-- Button to submit -->
         <button type="submit" class="btn btn-primary">Create Post</button>
     </form>
+    <!-- Form End -->
 
 
 
@@ -31,5 +38,6 @@
     <!-- Footer Partial -->
     <div th:replace="partials/partials.html :: JS"></div>
 </div>
+<!-- Main Container -->
 </body>
 </html>

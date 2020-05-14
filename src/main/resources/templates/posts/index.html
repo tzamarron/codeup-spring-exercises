@@ -8,19 +8,27 @@
 
 <!-- Main Container -->
 <div id="main-container">
+
     <!-- Title -->
     <h2>All the Posts</h2>
 
-    <!-- Area to show all the posts -->
+    <!-- Area to show all the posts
+        Takes attribute from PostController/Line 43
+        Cycles thru them and places info where stated -->
     <div th:each="post : ${posts}">
         <p style="font-weight: bold" th:text="${post.title}"></p>
         <p style="padding-left: 2rem" th:text="${post.description}"></p>
+
+        <!-- Include Anchor tag that links to PostController/Line 59 -->
         <a th:href="@{'/posts/' + ${post.id}}">Read More</a>
     </div>
+
+    <!-- Other Example -->
 <!--        <div th:remove="tag" th:utext="${posts}"></div>-->
 
     <!-- Scripts Partial -->
     <div th:replace="partials/partials.html :: JS"></div>
 </div>
+<!-- Main Controller -->
 </body>
 </html>

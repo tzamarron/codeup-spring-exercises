@@ -9,22 +9,30 @@
 <!-- Main Container -->
 <div id="main-container">
 
-    <!-- Form to Update Post -->
+    <!-- Form to Update Post with all info filled in using data from
+        PostController/Line 114-->
     <form th:action="@{'/posts/update/' + ${post.id}}" th:method="post">
+
+        <!-- Post Title input -->
         <div class="form-group">
             <label for="postTitle">Title</label>
             <input type="text" class="form-control" id="postTitle" name="postTitle" th:value="${post.title}">
         </div>
+
+        <!-- Post Description input -->
         <div class="form-group">
             <label for="postDescription">Description</label>
             <input type="text" class="form-control" id="postDescription" name="postDescription" th:value="${post.description}">
         </div>
+
+        <!-- Button to submit -->
         <button type="submit" class="btn btn-primary">Update Post</button>
     </form>
-
+    <!-- Form End -->
 
     <!-- Footer Partial -->
     <div th:replace="partials/partials.html :: JS"></div>
 </div>
+<!-- Main Controller -->
 </body>
 </html>
