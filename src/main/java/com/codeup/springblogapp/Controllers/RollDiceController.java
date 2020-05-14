@@ -12,7 +12,7 @@ public class RollDiceController {
     // Get for game page
     @GetMapping("/roll-dice")
     public String startGame(){
-        return "diceGame";
+        return "games/diceGame";
     }
 
     // Post for game page
@@ -38,7 +38,7 @@ public class RollDiceController {
         model.addAttribute("dice", dice);
 
         // Go to result page
-        return "diceGameResults";
+        return "games/diceGameResults";
     }
 
 }

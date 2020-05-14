@@ -12,6 +12,12 @@ public class HomeController {
         return "home";
     }
 
+
+
+
+
+
+    // Exercises mappings only
     @GetMapping("/hello")
     public String hello(){
         return "hello";
