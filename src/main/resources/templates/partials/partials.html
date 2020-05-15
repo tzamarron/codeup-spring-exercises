@@ -4,7 +4,7 @@
 <head th:fragment="head(title)">
     <meta charset=" UTF-8"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{../../css/style.css}">
     <title th:text="${title}"></title>
 </head>
 
@@ -32,6 +32,10 @@
         </div>
     </div>
 </nav>
+
+
+<!-- Jumbotron -->
+<div th:fragment="jumbotron" class="jumbotron-fluid" id="jumbotron-container"></div>
 
 
 <div th:fragment="JS">

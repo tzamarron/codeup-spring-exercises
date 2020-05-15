@@ -10,22 +10,31 @@
 <div id="main-container">
 
     <!--/* Form to Create Post and submit it to PostContoller/Line 84 */-->
-    <form action="/posts/createPost" method="post">
+    <form th:action="@{/posts/createPost}" th:method="post" th:object="${post}">
 
         <!--/* Title Input */-->
-        <div class="form-group">
-            <label for="postTitle">Title</label>
-            <input type="text" class="form-control" id="postTitle" name="postTitle">
-        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="postTitle">Title</label>-->
+<!--            <input type="text" class="form-control" id="postTitle" name="postTitle">-->
+<!--        </div>-->
 
         <!--/* Description Input */-->
-        <div class="form-group">
-            <label for="postDescription">Description</label>
-            <textarea type="text" class="form-control" id="postDescription" name="postDescription" rows="8"></textarea>
-        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="postDescription">Description</label>-->
+<!--            <textarea type="text" class="form-control" id="postDescription" name="postDescription" rows="8"></textarea>-->
+<!--        </div>-->
 
         <!--/* Button to submit */-->
-        <button type="submit" class="btn btn-primary">Create Post</button>
+<!--        <button type="submit" class="btn btn-primary">Create Post</button>-->
+        Title:
+        <input th:field="*{title}" />
+        <br />
+
+        Description:
+        <input th:field="*{description}" />
+        <br />
+
+        <input type="submit" />
     </form>
     <!--/* Form End */-->
 

@@ -4,9 +4,8 @@
 <head th:replace="partials/partials :: head('Posts')"></head>
 <body>
 <!--/* Navbar Partial */-->
-<nav th:replace="partials/partials.html :: navbar"></nav>
+<nav th:replace="partials/partials :: navbar"></nav>
 
-<!-- Jumbotron -->
 <div class="jumbotron-fluid" id="jumbotron-container"></div>
 
 <!--/* Main Container */-->
@@ -23,7 +22,7 @@
         <p style="padding-left: 2rem" th:text="${post.description}"></p>
 
         <!--/* Include Anchor tag that links to PostController/Line 59 */-->
-        <a th:href="@{|/posts/${post.id}|}">Read More</a>
+        <a th:href="@{|/posts/${post.id}/edit|}">Read More</a>
 
         <!-- Break and Horizontal line -->
         <hr><br>
@@ -33,7 +32,7 @@
 <!--/*        <div th:remove="tag" th:utext="${posts}"></div>*/-->
 
     <!--/* Scripts Partial */-->
-    <div th:replace="partials/partials.html :: JS"></div>
+    <div th:replace="partials/partials :: JS"></div>
 </div>
 <!--/* Main Controller */-->
 </body>

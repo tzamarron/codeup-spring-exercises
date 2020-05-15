@@ -10,23 +10,32 @@
 <div id="main-container">
 
     <!--/* Form to Update Post with all info filled in using data from
-        PostController/Line 114*/-->
-    <form th:action="@{|/posts/update/${post.id}|}" th:method="post">
+        PostController/Line 114 */-->
+    <form th:action="@{|/posts/${post.id}/edit|}" th:method="post" th:object="${post}">
 
-        <!--/* Post Title input */-->
-        <div class="form-group">
-            <label for="postTitle">Title</label>
-            <input type="text" class="form-control" id="postTitle" name="postTitle" th:value="${post.title}">
-        </div>
+<!--        &lt;!&ndash;/* Post Title input */&ndash;&gt;-->
+<!--        <div class="form-group">-->
+<!--            <label for="postTitle">Title</label>-->
+<!--            <input type="text" class="form-control" id="postTitle" name="postTitle" th:value="${post.title}">-->
+<!--        </div>-->
 
-        <!--/* Post Description input */-->
-        <div class="form-group">
-            <label for="postDescription">Description</label>
-            <input type="text" class="form-control" id="postDescription" name="postDescription" th:value="${post.description}">
-        </div>
+<!--        &lt;!&ndash;/* Post Description input */&ndash;&gt;-->
+<!--        <div class="form-group">-->
+<!--            <label for="postDescription">Description</label>-->
+<!--            <input type="text" class="form-control" id="postDescription" name="postDescription" th:value="${post.description}">-->
+<!--        </div>-->
 
-        <!--/* Button to submit */-->
-        <button type="submit" class="btn btn-primary">Update Post</button>
+<!--        &lt;!&ndash;/* Button to submit */&ndash;&gt;-->
+<!--        <button type="submit" class="btn btn-primary">Update Post</button>-->
+        Title:
+        <input th:field="*{title}" />
+        <br />
+
+        Description:
+        <textarea th:field="*{description}"></textarea>
+        <br />
+
+        <input type="submit" />
     </form>
     <!--/* Form End */-->
 

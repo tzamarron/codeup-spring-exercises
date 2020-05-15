@@ -63,7 +63,9 @@ public class PostController {
 
     // When url is visited
     @GetMapping("/posts/createPost")
-    public String createPost() {
+    public String createPost(Model model) {
+        Post post = new Post();
+        model.addAttribute("post",post);
         // Go to html
         return "posts/create";
     }
@@ -72,25 +74,31 @@ public class PostController {
     @PostMapping("/posts/createPost")
 
     // Method that uses data POSTed from the forms in the posts/create.html
-    public String newPost(@RequestParam String postTitle, @RequestParam String postDescription) {
-
-        // Temp Code
-         User user = userRepo.getOne(1L);
-
-        // create a new Post with data sent
-       Post post = new Post(postTitle,postDescription,user);
-
-       // Save new Post to database using postRepo
-       postRepo.save(post);
-
-       // redirect to Controller to repopulate data to html
-       return "redirect:/posts";
+//    public String newPost(@RequestParam String postTitle, @RequestParam String postDescription) {
+//
+//        // Temp Code
+//         User user = userRepo.getOne(1L);
+//
+//        // create a new Post with data sent
+//       Post post = new Post(postTitle,postDescription,user);
+//
+//       // Save new Post to database using postRepo
+//       postRepo.save(post);
+//
+//       // redirect to Controller to repopulate data to html
+//       return "redirect:/posts";
+//    }
+    public String newPost(@ModelAttribute Post post){
+        User user = userRepo.getOne(1L);
+        post.setUser(user);
+        postRepo.save(post);
+        return "redirect:/posts";
     }
 
 ////////////////////////////////  Update Post  ///////////////////////////////////////////
 
     // When url is visited
-    @GetMapping("/posts/update/{id}")
+    @GetMapping("/posts/{id}/edit")
 
     // Method that uses id passed from posts/show.html
     public String editPost(@PathVariable long id, Model model) {
@@ -107,28 +115,36 @@ public class PostController {
     }
 
     // When url is posted to
-    @PostMapping("/posts/update/{id}")
+    @PostMapping("/posts/{id}/edit")
 
     // Method that updates Post based on info POSTed by form in posts/show.html
-    public String updatedPost(@RequestParam String postTitle, @RequestParam String postDescription, @PathVariable long id, Model model) {
+//    public String updatedPost(@RequestParam String postTitle, @RequestParam String postDescription, @PathVariable long id, Model model) {
+//
+//        // Find Post by id passed and store to new Post
+//        Post post = postRepo.findById(id);
+//
+//        // Set found post's properties to new properties
+//        post.setTitle(postTitle);
+//        post.setDescription(postDescription);
+//
+//        // Save this(post from database) to database with the new set properties
+//        post = this.postRepo.save(post);
+//
+//        // Store Post to model to send to html to use
+//        model.addAttribute("post",post);
+//
+//        // Redirect to controller to repopulate post with new data in html
+//        return "redirect:/posts/" + post.getId();
+//    }
+    public String editedPost(@ModelAttribute Post updatedPost,@PathVariable long id, Model model){
+        User user = userRepo.getOne(1L);
+        updatedPost.setId(id);
+        updatedPost.setUser(user);
+        postRepo.save(updatedPost);
+        model.addAttribute("post",updatedPost);
+        return "redirect:/posts/" + id;
 
-        // Find Post by id passed and store to new Post
-        Post post = postRepo.findById(id);
-
-        // Set found post's properties to new properties
-        post.setTitle(postTitle);
-        post.setDescription(postDescription);
-
-        // Save this(post from database) to database with the new set properties
-        post = this.postRepo.save(post);
-
-        // Store Post to model to send to html to use
-        model.addAttribute("post",post);
-
-        // Redirect to controller to repopulate post with new data in html
-        return "redirect:/posts/" + post.getId();
     }
-
 ////////////////////////////////  Delete Post  /////////////////////////////////////////////////
 
     // When url is posted to
