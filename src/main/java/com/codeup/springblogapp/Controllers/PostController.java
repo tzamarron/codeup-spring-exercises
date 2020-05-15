@@ -15,8 +15,8 @@ import java.util.List;
 public class PostController {
 
     // Dependency Injection
-    private PostRepository postRepo;
-    private UserRepository userRepo;
+    private final PostRepository postRepo;
+    private final UserRepository userRepo;
 
     // Springs version of DaoFactory that uses the Repo(interface as a Dao)
     public PostController(PostRepository postRepo, UserRepository userRepo) {
@@ -50,7 +50,7 @@ public class PostController {
     @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
 
     // Method that uses id passed from posts/index.html and casts it to long
-    public String getPost(@PathVariable(name = "id") long id, Model model){
+    public String getPost(@PathVariable long id, Model model){
 
         // find the post by id in database and send variable Post to html
         model.addAttribute("post",postRepo.getOne(id));
@@ -72,13 +72,13 @@ public class PostController {
     @PostMapping("/posts/createPost")
 
     // Method that uses data POSTed from the forms in the posts/create.html
-    public String newPost(@RequestParam(name="postTitle") String title, @RequestParam(name="postDescription") String description) {
+    public String newPost(@RequestParam String postTitle, @RequestParam String postDescription) {
 
         // Temp Code
-        User user = new User(1,"uprizin","ted@email.com");
+         User user = userRepo.getOne(1L);
 
         // create a new Post with data sent
-       Post post = new Post(title,description,user);
+       Post post = new Post(postTitle,postDescription,user);
 
        // Save new Post to database using postRepo
        postRepo.save(post);
@@ -93,7 +93,7 @@ public class PostController {
     @GetMapping("/posts/update/{id}")
 
     // Method that uses id passed from posts/show.html
-    public String editPost(@PathVariable(name="id") long id, Model model) {
+    public String editPost(@PathVariable long id, Model model) {
 
         // Store Post with id passed from html to variable
         Post post = postRepo.getOne(id);
@@ -110,14 +110,14 @@ public class PostController {
     @PostMapping("/posts/update/{id}")
 
     // Method that updates Post based on info POSTed by form in posts/show.html
-    public String updatedPost(@RequestParam(name="postTitle") String title, @RequestParam(name="postDescription") String description, @PathVariable(name="id") long id, Model model) {
+    public String updatedPost(@RequestParam String postTitle, @RequestParam String postDescription, @PathVariable long id, Model model) {
 
         // Find Post by id passed and store to new Post
         Post post = postRepo.findById(id);
 
         // Set found post's properties to new properties
-        post.setTitle(title);
-        post.setDescription(description);
+        post.setTitle(postTitle);
+        post.setDescription(postDescription);
 
         // Save this(post from database) to database with the new set properties
         post = this.postRepo.save(post);
@@ -135,7 +135,7 @@ public class PostController {
     @PostMapping("/posts/delete")
 
     // Method that deletes Post based on info POSTED by button in posts/show.html
-    public String deletePost(@RequestParam(name="id") long id){
+    public String deletePost(@RequestParam long id){
 
         // Get Post by id from database and store to new Post
         Post post = postRepo.getOne(id);

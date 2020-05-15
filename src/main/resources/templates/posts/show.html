@@ -10,16 +10,23 @@
 <div id="main-container">
 
     <!--/* Main Header */-->
-    <h2>Selected Post</h2>
+
 
     <!--/* Using attribute passed from PostController/Line 68
     set the Posts title and description with inline styling */-->
-    <p style="font-weight: bold;" th:text="${post.title}"></p>
+    <h2 th:text="${post.title}"></h2>
     <p style="padding-left: 2rem" th:text="${post.description}"></p>
-    <p>Post created by: <span th:text="${post.user.username}"></span></p>
+    <p>Post created by:
+    <br>
+    <span th:text="${post.user.username}"></span>
+    <br>
+    <a th:text="${post.user.email}" th:href="@{|mailto:${post.user.email}|}"></a>
+    </p>
+    <br>
+
 
     <!--/* Anchor tag that links to PostController/Line 105 */-->
-    <a class="btn" th:href="@{'/posts/update/' + ${post.id}}">Update</a>
+    <a class="btn btn-primary" th:href="@{|/posts/update/${post.id}|}">Update</a>
 
     <!--/* In a div (easy to style) a button is placed to open a model
         inside the model there is a form to submit the Post's id to 

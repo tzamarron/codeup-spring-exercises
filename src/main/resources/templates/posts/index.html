@@ -10,19 +10,20 @@
 <div id="main-container">
 
     <!--/* Title */-->
-    <h2>All the Posts</h2>
+    <h1>All the Posts</h1>
 
     <!--/* Area to show all the posts
         Takes attribute from PostController/Line 43
         Cycles thru them and places info where stated */-->
-    <div th:each="post : ${posts}">
-        <p style="font-weight: bold" th:text="${post.title}"></p>
+    <div th:each="post : ${posts}" class="my-5">
+        <h2 th:text="${post.title}"></h2>
         <p style="padding-left: 2rem" th:text="${post.description}"></p>
 
         <!--/* Include Anchor tag that links to PostController/Line 59 */-->
-        <a th:href="@{'/posts/' + ${post.id}}">Read More</a>
+        <a th:href="@{|/posts/${post.id}|}">Read More</a>
 
-        <a href="/post/show" th:text="${post.title}"></a>
+        <!-- Break and Horizontal line -->
+        <hr><br>
     </div>
 
     <!--/* Other Example */-->

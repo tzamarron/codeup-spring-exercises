@@ -16,6 +16,7 @@ public class Post {
     private String description; // Due to above definition it is set to TEXT and not VARCHAR
 
     @ManyToOne // One post will be assigned to only one User (1-to-1) Also acts as foreign key
+    @JoinColumn(name = "user_id")
     private User user;
 
 //    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post") // each post can have many images

@@ -11,7 +11,7 @@
 
     <!--/* Form to Update Post with all info filled in using data from
         PostController/Line 114*/-->
-    <form th:action="@{'/posts/update/' + ${post.id}}" th:method="post">
+    <form th:action="@{|/posts/update/${post.id}|}" th:method="post">
 
         <!--/* Post Title input */-->
         <div class="form-group">
