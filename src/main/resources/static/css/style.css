@@ -9,6 +9,20 @@
     width: 100vw;
 }
 
+/**/
+/** CSS for Jumbotron **/
+/**/
+
+#jumbotron-container {
+    height: 50vh;
+    background-image: url("img/light-landscape-nature-forest-117843.jpg");
+    background-size: contain;
+}
+
+/**/
+/** CSS for Main Container **/
+/**/
+
 #main-container {
     padding-top: 101px;
 }
