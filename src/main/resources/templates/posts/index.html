@@ -21,6 +21,8 @@
 
         <!--/* Include Anchor tag that links to PostController/Line 59 */-->
         <a th:href="@{'/posts/' + ${post.id}}">Read More</a>
+
+        <a href="/post/show" th:text="${post.title}"></a>
     </div>
 
     <!--/* Other Example */-->

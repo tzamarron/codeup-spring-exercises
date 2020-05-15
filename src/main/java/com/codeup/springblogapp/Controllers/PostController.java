@@ -1,7 +1,9 @@
 package com.codeup.springblogapp.Controllers;
 
 import com.codeup.springblogapp.model.Post;
+import com.codeup.springblogapp.model.User;
 import com.codeup.springblogapp.repositories.PostRepository;
+import com.codeup.springblogapp.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +16,12 @@ public class PostController {
 
     // Dependency Injection
     private PostRepository postRepo;
+    private UserRepository userRepo;
 
     // Springs version of DaoFactory that uses the Repo(interface as a Dao)
-    public PostController(PostRepository postRepo) {
+    public PostController(PostRepository postRepo, UserRepository userRepo) {
         this.postRepo = postRepo;
+        this.userRepo = userRepo;
     }
 
 ////////////////////////////////  Show All  ///////////////////////////////////////////
@@ -26,21 +30,8 @@ public class PostController {
     @GetMapping("/posts")
     public String getPosts(Model model) {
 
-        // List Bucket for Posts
-        List<Post> posts = new ArrayList<>();
-
-        // For each Post in the master list of Post
-        // add the Post to the List bucket
-        for (Post post : postRepo.findAll()) {
-            posts.add(new Post(
-                    post.getId(),
-                    post.getTitle(),
-                    post.getDescription()
-            ));
-        }
-
-        // Pass the List bucket of Posts to post/index html page
-        model.addAttribute("posts", posts);
+        // Pass the master list of Posts to post/index html page
+        model.addAttribute("posts", postRepo.findAll());
 
         // Go to to html
         return "posts/index";
@@ -61,11 +52,8 @@ public class PostController {
     // Method that uses id passed from posts/index.html and casts it to long
     public String getPost(@PathVariable(name = "id") long id, Model model){
 
-        // find the post by id in database and store to variable
-        Post post = postRepo.getOne(id);
-
-        // send variable Post to html
-        model.addAttribute("post",post);
+        // find the post by id in database and send variable Post to html
+        model.addAttribute("post",postRepo.getOne(id));
 
         // Go to html
         return "posts/show";
@@ -84,16 +72,16 @@ public class PostController {
     @PostMapping("/posts/createPost")
 
     // Method that uses data POSTed from the forms in the posts/create.html
-    public String newPost(@RequestParam(name="postTitle") String title, @RequestParam(name="postDescription") String description, Model model) {
+    public String newPost(@RequestParam(name="postTitle") String title, @RequestParam(name="postDescription") String description) {
+
+        // Temp Code
+        User user = new User(1,"uprizin","ted@email.com");
 
         // create a new Post with data sent
-       Post post = new Post(title,description);
+       Post post = new Post(title,description,user);
 
        // Save new Post to database using postRepo
        postRepo.save(post);
-
-       // Store new Post to model to send to html to use
-       model.addAttribute("post", post);
 
        // redirect to Controller to repopulate data to html
        return "redirect:/posts";

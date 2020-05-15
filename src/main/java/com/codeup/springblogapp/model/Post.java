@@ -18,36 +18,39 @@ public class Post {
     @ManyToOne // One post will be assigned to only one User (1-to-1) Also acts as foreign key
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post") // each post can have many images
-    private List<PostImage> images;
-
-    // many posts can be mapped to many categories (Many-2-Many)
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            // name of the intermediate table
-            name = "post_categories",
-            // name for the id of this model JoinColumns
-            joinColumns = {@JoinColumn(name = "post_id")},
-            // name for the if of the related model inverse JoinColumns
-            inverseJoinColumns = {@JoinColumn(name = "category_id")}
-    )
-    private List<Category> categories;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post") // each post can have many images
+//    private List<PostImage> images;
+//
+//    // many posts can be mapped to many categories (Many-2-Many)
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            // name of the intermediate table
+//            name = "post_categories",
+//            // name for the id of this model JoinColumns
+//            joinColumns = {@JoinColumn(name = "post_id")},
+//            // name for the if of the related model inverse JoinColumns
+//            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+//    )
+//    private List<Category> categories;
 
     // Constructors
     public Post(){};
 
-    public Post(long id, String title, String description) {
+    public Post(long id, String title, String description, User user) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.user = user;
     }
 
-    public Post(String title, String description) {
+    public Post(String title, String description, User user) {
         this.title = title;
         this.description = description;
+        this.user = user;
     }
 
     // Getters and Setters
+
     public long getId() {
         return id;
     }
@@ -71,4 +74,13 @@ public class Post {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }

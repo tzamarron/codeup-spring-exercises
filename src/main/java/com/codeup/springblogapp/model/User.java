@@ -20,7 +20,7 @@ public class User {
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") // 1 User can have many Posts (1-to-many)
-    private List<Post> images;
+    private List<Post> posts;
 
     // Constructors
     public User(){};

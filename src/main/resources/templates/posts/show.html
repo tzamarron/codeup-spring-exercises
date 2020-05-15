@@ -16,6 +16,7 @@
     set the Posts title and description with inline styling */-->
     <p style="font-weight: bold;" th:text="${post.title}"></p>
     <p style="padding-left: 2rem" th:text="${post.description}"></p>
+    <p>Post created by: <span th:text="${post.user.username}"></span></p>
 
     <!--/* Anchor tag that links to PostController/Line 105 */-->
     <a class="btn" th:href="@{'/posts/update/' + ${post.id}}">Update</a>
