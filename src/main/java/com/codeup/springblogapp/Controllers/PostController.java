@@ -145,6 +145,7 @@ public class PostController {
         return "redirect:/posts/" + id;
 
     }
+
 ////////////////////////////////  Delete Post  /////////////////////////////////////////////////
 
     // When url is posted to
