@@ -27,7 +27,7 @@ public class PostController {
 ////////////////////////////////  Show All  ///////////////////////////////////////////
 
     // Method for showing all posts
-    @GetMapping("/posts")
+    @GetMapping({"/posts","/"})
     public String getPosts(Model model) {
 
         // Pass the master list of Posts to post/index html page
