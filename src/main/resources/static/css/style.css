@@ -14,7 +14,7 @@
 /**/
 
 #jumbotron-container {
-    padding-top: 101px;
+    padding-top: 110px;
     height: 80vh;
     background-image: url("../img/light-landscape-nature-forest-117843.jpg");
     background-size: cover;
@@ -25,5 +25,5 @@
 /**/
 
 #main-container {
-
+    padding-top: 110px;
 }

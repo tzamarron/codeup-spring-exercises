@@ -3,11 +3,11 @@
 <!--/* Head Partial */-->
 <head th:replace="partials/partials :: head('Post')"></head>
 <body>
-<!--/* Navbar Partial*/-->
-<nav th:replace="partials/partials.html :: navbar"></nav>
+<!--/* Navbar Partial */-->
+<nav th:replace="partials/partials :: navbar"></nav>
 
 <!--/* Main Container */-->
-<div id="main-container">
+<div class="pl-3" id="main-container">
 
     <!--/* Main Header */-->
 
@@ -17,10 +17,10 @@
     <h2 th:text="${post.title}"></h2>
     <p style="padding-left: 2rem" th:text="${post.description}"></p>
     <p>Post created by:
-    <br>
-    <span th:text="${post.user.username}"></span>
-    <br>
-    <a th:text="${post.user.email}" th:href="@{|mailto:${post.user.email}|}"></a>
+        <br>
+        <span th:text="${post.user.username}"></span>
+        <br>
+        <a th:text="${post.user.email}" th:href="@{|mailto:${post.user.email}|}"></a>
     </p>
     <br>
 
@@ -39,7 +39,8 @@
         </button>
 
         <!--/* Modal */-->
-        <div class="modal fade" id="deletePost" tabindex="-1" role="dialog" aria-labelledby="deleteConfirm" aria-hidden="true">
+        <div class="modal fade" id="deletePost" tabindex="-1" role="dialog" aria-labelledby="deleteConfirm"
+             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -63,15 +64,15 @@
     </div>
 
     <!--/* Other example */-->
-<!--/*    <div>*/-->
-<!--/*        <form method="post">*/-->
-<!--/*            <a class="btn" th:formaction="'/posts/delete/' + ${post.id}">Delete Post</a>*/-->
-<!--/*        </form>*/-->
-<!--/*    </div>*/-->
+    <!--/*    <div>*/-->
+    <!--/*        <form method="post">*/-->
+    <!--/*            <a class="btn" th:formaction="'/posts/delete/' + ${post.id}">Delete Post</a>*/-->
+    <!--/*        </form>*/-->
+    <!--/*    </div>*/-->
 
 
     <!--/* Scripts Partial*/-->
-    <div th:replace="partials/partials.html :: JS"></div>
+    <div th:replace="partials/partials :: JS"></div>
 </div>
 <!--/* Main Container */-->
 </body>

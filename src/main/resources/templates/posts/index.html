@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<!--/*Head Partial */-->
+<!--/* Head Partial */-->
 <head th:replace="partials/partials :: head('Posts')"></head>
 <body>
 <!--/* Navbar Partial */-->
@@ -9,27 +9,30 @@
 <div class="jumbotron-fluid" id="jumbotron-container"></div>
 
 <!--/* Main Container */-->
-<div id="main-container">
-
-    <!--/* Title */-->
-    <h1>All the Posts</h1>
+<div class="pl-3">
 
     <!--/* Area to show all the posts
         Takes attribute from PostController/Line 43
         Cycles thru them and places info where stated */-->
     <div th:each="post : ${posts}" class="my-5">
-        <h2 th:text="${post.title}"></h2>
-        <p style="padding-left: 2rem" th:text="${post.description}"></p>
+        <h1 th:text="${post.title}"></h1>
+        <!--        <p style="padding-left: 2rem" th:text="${post.description}"></p>-->
+        <div class="d-inline-block text-wrap text-truncate pl-4"
+             style="max-width: calc(90%); max-height: 3em; text-overflow: ellipsis;"
+             th:utext="${post.description}"></div>
+
+        <br>
 
         <!--/* Include Anchor tag that links to PostController/Line 59 */-->
-        <a th:href="@{|/posts/${post.id}|}">Read More</a>
+        <a class="badge badge-primary" th:href="@{|/posts/${post.id}|}">Read More</a>
 
         <!-- Break and Horizontal line -->
-        <hr><br>
+        <hr>
+        <br>
     </div>
 
     <!--/* Other Example */-->
-<!--/*        <div th:remove="tag" th:utext="${posts}"></div>*/-->
+    <!--/*        <div th:remove="tag" th:utext="${posts}"></div>*/-->
 
     <!--/* Scripts Partial */-->
     <div th:replace="partials/partials :: JS"></div>
