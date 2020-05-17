@@ -9,33 +9,27 @@
 <div class="jumbotron-fluid" id="jumbotron-container"></div>
 
 <!--/* Main Container */-->
-<div class="pl-3 container-fluid">
+<div class="pl-3">
 
     <div class="row" th:each="post : ${posts}">
         <!--/* Area to show all the posts
             Takes attribute from PostController/Line 43
             Cycles thru them and places info where stated */-->
-        <div class="my-5 col-8">
+        <div class="my-5 col-9">
             <h1 th:text="${post.title}"></h1>
-            <div class="d-inline-block text-wrap text-truncate pl-4"
-                 style="max-width: calc(90%); height: 3em;"
-                 th:utext="${post.description}"></div>
-            <br>
+            <div class="d-inline-block text-wrap text-truncate pl-4" th:utext="${post.description}"></div>
 
             <!--/* Include Anchor tag that links to PostController/Line 59 */-->
             <a class="badge badge-primary" th:href="@{|/posts/${post.id}|}">Read More</a>
-
-            <!-- Break and Horizontal line -->
-            <hr>
-            <br>
         </div>
-        <div class=" my-5 col-4" style="height: 100%;" >
+
+        <div class=" my-5 col-3 d-flex flex-column align-items-center" style="height: 100%;" >
             <ul class="list-unstyled d-flex">
-                <li><i class="fab fa-instagram-square"></i></li>
-                <li><i class="fab fa-twitter-square"></i></li>
-                <li><i class="fab fa-facebook-square"></i></li>
+                <li class="mx-2"><i class="fab fa-instagram-square"></i></li>
+                <li class="mx-2"><i class="fab fa-twitter-square"></i></li>
+                <li class="mx-2"><i class="fab fa-facebook-square"></i></li>
             </ul>
-            <br>
+            <h3 th:text="${post.user.username}"></h3>
             <img src="http://placeholder.pics/svg/200/DEDEDE/555555/User%20Pic" alt=" User Pic">
             <hr>
             <br>
