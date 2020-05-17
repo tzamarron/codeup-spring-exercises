@@ -9,34 +9,44 @@
 <div class="jumbotron-fluid" id="jumbotron-container"></div>
 
 <!--/* Main Container */-->
-<div class="pl-3">
+<div class="pl-3 container-fluid">
 
-    <!--/* Area to show all the posts
-        Takes attribute from PostController/Line 43
-        Cycles thru them and places info where stated */-->
-    <div th:each="post : ${posts}" class="my-5">
-        <h1 th:text="${post.title}"></h1>
-        <!--        <p style="padding-left: 2rem" th:text="${post.description}"></p>-->
-        <div class="d-inline-block text-wrap text-truncate pl-4"
-             style="max-width: calc(90%); max-height: 3em; text-overflow: ellipsis;"
-             th:utext="${post.description}"></div>
+    <div class="row" th:each="post : ${posts}">
+        <!--/* Area to show all the posts
+            Takes attribute from PostController/Line 43
+            Cycles thru them and places info where stated */-->
+        <div class="my-5 col-8">
+            <h1 th:text="${post.title}"></h1>
+            <div class="d-inline-block text-wrap text-truncate pl-4"
+                 style="max-width: calc(90%); height: 3em;"
+                 th:utext="${post.description}"></div>
+            <br>
 
-        <br>
+            <!--/* Include Anchor tag that links to PostController/Line 59 */-->
+            <a class="badge badge-primary" th:href="@{|/posts/${post.id}|}">Read More</a>
 
-        <!--/* Include Anchor tag that links to PostController/Line 59 */-->
-        <a class="badge badge-primary" th:href="@{|/posts/${post.id}|}">Read More</a>
+            <!-- Break and Horizontal line -->
+            <hr>
+            <br>
+        </div>
+        <div class=" my-5 col-4" style="height: 100%;" >
+            <ul class="list-unstyled d-flex">
+                <li><i class="fab fa-instagram-square"></i></li>
+                <li><i class="fab fa-twitter-square"></i></li>
+                <li><i class="fab fa-facebook-square"></i></li>
+            </ul>
+            <br>
+            <img src="http://placeholder.pics/svg/200/DEDEDE/555555/User%20Pic" alt=" User Pic">
+            <hr>
+            <br>
+        </div>
 
-        <!-- Break and Horizontal line -->
-        <hr>
-        <br>
+        <!--/* Other Example */-->
+        <!--/*        <div th:remove="tag" th:utext="${posts}"></div>*/-->
     </div>
-
-    <!--/* Other Example */-->
-    <!--/*        <div th:remove="tag" th:utext="${posts}"></div>*/-->
-
-    <!--/* Scripts Partial */-->
-    <div th:replace="partials/partials :: JS"></div>
 </div>
+<!--/* Scripts Partial */-->
+<div th:replace="partials/partials :: JS"></div>
 <!--/* Main Controller */-->
 </body>
 </html>
