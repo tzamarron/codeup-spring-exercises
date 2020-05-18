@@ -4,12 +4,15 @@ import com.codeup.springblogapp.model.Post;
 import com.codeup.springblogapp.model.User;
 import com.codeup.springblogapp.repositories.PostRepository;
 import com.codeup.springblogapp.repositories.UserRepository;
+import com.codeup.springblogapp.services.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class PostController {
@@ -17,11 +20,13 @@ public class PostController {
     // Dependency Injection
     private final PostRepository postRepo;
     private final UserRepository userRepo;
+    private final EmailService emailService;
 
     // Springs version of DaoFactory that uses the Repo(interface as a Dao)
-    public PostController(PostRepository postRepo, UserRepository userRepo) {
+    public PostController(PostRepository postRepo, UserRepository userRepo, EmailService emailService) {
         this.postRepo = postRepo;
         this.userRepo = userRepo;
+        this.emailService = emailService;
     }
 
 ////////////////////////////////  Show All  ///////////////////////////////////////////
@@ -44,7 +49,7 @@ public class PostController {
 //        postString += "</div>";
     }
 
-////////////////////////////////  Show Single  ///////////////////////////////////////////
+////////////////////////////////  Show Single  ////////////////////////////////////////
 
     // When url is visited
     @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
@@ -59,7 +64,7 @@ public class PostController {
         return "posts/show";
     }
 
-////////////////////////////////  Create Post  ///////////////////////////////////////////
+////////////////////////////////  Create Post  ////////////////////////////////////////
 
     // When url is visited
     @GetMapping("/posts/createPost")
@@ -88,11 +93,15 @@ public class PostController {
         // Save Post object to the database
         postRepo.save(post);
 
+        // Sends email to user
+        emailService.prepareAndSend(post, "you created a Post", "Title:" + post.getTitle() + "\nDescription: " + post.getDescription());
+//        emailService.sendSimpleMessage(user.getEmail(),"You Created a Post","Post created. Test from Spring");
+
         // Send to Post index controller
         return "redirect:/posts";
     }
 
-////////////////////////////////  Update Post  ///////////////////////////////////////////
+////////////////////////////////  Update Post  ////////////////////////////////////////
 
     // When url is visited
     @GetMapping("/posts/{id}/edit")
@@ -134,7 +143,7 @@ public class PostController {
 
     }
 
-////////////////////////////////  Delete Post  /////////////////////////////////////////////////
+//////////////////////////  Delete Post  //////////////////////////////////////////////
 
     // When url is posted to
     @PostMapping("/posts/delete")
@@ -152,3 +161,4 @@ public class PostController {
         return "redirect:/posts";
     }
 }
+
