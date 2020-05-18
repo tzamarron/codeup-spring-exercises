@@ -13,27 +13,18 @@
     <form th:action="@{/posts/createPost}" th:method="post" th:object="${post}">
 
         <!--/* Title Input */-->
-<!--        <div class="form-group">-->
-<!--            <label for="postTitle">Title</label>-->
-<!--            <input type="text" class="form-control" id="postTitle" name="postTitle">-->
-<!--        </div>-->
+        <label for="post-title"> Title:
+            <input th:field="*{title}" id="post-title"/>
+        </label>
+        <br />
 
         <!--/* Description Input */-->
-<!--        <div class="form-group">-->
-<!--            <label for="postDescription">Description</label>-->
-<!--            <textarea type="text" class="form-control" id="postDescription" name="postDescription" rows="8"></textarea>-->
-<!--        </div>-->
+        <label for="post-body"> Description:
+            <textarea th:field="*{description}" id="post-body"></textarea>
+        </label>
+        <br />
 
         <!--/* Button to submit */-->
-<!--        <button type="submit" class="btn btn-primary">Create Post</button>-->
-        Title:
-        <input th:field="*{title}" />
-        <br />
-
-        Description:
-        <input th:field="*{description}" />
-        <br />
-
         <input type="submit" />
     </form>
     <!--/* Form End */-->

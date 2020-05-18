@@ -63,9 +63,15 @@ public class PostController {
 
     // When url is visited
     @GetMapping("/posts/createPost")
+
+    // Method that creates a blank post and adds creating user to it
     public String createPost(Model model) {
+        // Create a blank post
         Post post = new Post();
+
+        // Add Post to model to send to html
         model.addAttribute("post",post);
+
         // Go to html
         return "posts/create";
     }
@@ -73,25 +79,16 @@ public class PostController {
     // When url is posted to
     @PostMapping("/posts/createPost")
 
-    // Method that uses data POSTed from the forms in the posts/create.html
-//    public String newPost(@RequestParam String postTitle, @RequestParam String postDescription) {
-//
-//        // Temp Code
-//         User user = userRepo.getOne(1L);
-//
-//        // create a new Post with data sent
-//       Post post = new Post(postTitle,postDescription,user);
-//
-//       // Save new Post to database using postRepo
-//       postRepo.save(post);
-//
-//       // redirect to Controller to repopulate data to html
-//       return "redirect:/posts";
-//    }
+    // Method that uses Post Object from the forms in the posts/create.html
     public String newPost(@ModelAttribute Post post){
+        // get User who is creating Post and add it to Post object
         User user = userRepo.getOne(1L);
         post.setUser(user);
+
+        // Save Post object to the database
         postRepo.save(post);
+
+        // Send to Post index controller
         return "redirect:/posts";
     }
 
@@ -110,38 +107,29 @@ public class PostController {
         model.addAttribute("post", post);
 
         // Go to html
-        return "/posts/update";
+        return "posts/update";
 
     }
 
     // When url is posted to
     @PostMapping("/posts/{id}/edit")
 
-    // Method that updates Post based on info POSTed by form in posts/show.html
-//    public String updatedPost(@RequestParam String postTitle, @RequestParam String postDescription, @PathVariable long id, Model model) {
-//
-//        // Find Post by id passed and store to new Post
-//        Post post = postRepo.findById(id);
-//
-//        // Set found post's properties to new properties
-//        post.setTitle(postTitle);
-//        post.setDescription(postDescription);
-//
-//        // Save this(post from database) to database with the new set properties
-//        post = this.postRepo.save(post);
-//
-//        // Store Post to model to send to html to use
-//        model.addAttribute("post",post);
-//
-//        // Redirect to controller to repopulate post with new data in html
-//        return "redirect:/posts/" + post.getId();
-//    }
+    // Method that updates Post based on Post Object passed by form in posts/show.html
     public String editedPost(@ModelAttribute Post updatedPost,@PathVariable long id, Model model){
+        // Get current User
         User user = userRepo.getOne(1L);
+
+        // Add ID passed by url and above User to Post object passed over
         updatedPost.setId(id);
         updatedPost.setUser(user);
+
+        // Save Updated Post to database
         postRepo.save(updatedPost);
+
+        // Save updatedPost to model to send to html
         model.addAttribute("post",updatedPost);
+
+        // Go to Show post Controller
         return "redirect:/posts/" + id;
 
     }

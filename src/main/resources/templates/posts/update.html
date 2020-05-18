@@ -12,30 +12,19 @@
     <!--/* Form to Update Post with all info filled in using data from
         PostController/Line 114 */-->
     <form th:action="@{|/posts/${post.id}/edit|}" th:method="post" th:object="${post}">
+        <!--/* Post Title input */-->
+        <label for="updated-title"> Title:
+            <input th:field="*{title}" id="updated-title"/>
+        </label>
+        <br/>
 
-<!--        &lt;!&ndash;/* Post Title input */&ndash;&gt;-->
-<!--        <div class="form-group">-->
-<!--            <label for="postTitle">Title</label>-->
-<!--            <input type="text" class="form-control" id="postTitle" name="postTitle" th:value="${post.title}">-->
-<!--        </div>-->
+        <!--/* Post Description input */-->
+        <label for="updated-description"> Description:</label>
+        <textarea th:field="*{description}" id="updated-description" rows="auto"></textarea>
+        <br/>
 
-<!--        &lt;!&ndash;/* Post Description input */&ndash;&gt;-->
-<!--        <div class="form-group">-->
-<!--            <label for="postDescription">Description</label>-->
-<!--            <input type="text" class="form-control" id="postDescription" name="postDescription" th:value="${post.description}">-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash;/* Button to submit */&ndash;&gt;-->
-<!--        <button type="submit" class="btn btn-primary">Update Post</button>-->
-        Title:
-        <input th:field="*{title}" />
-        <br />
-
-        Description:
-        <textarea th:field="*{description}"></textarea>
-        <br />
-
-        <input type="submit" />
+        <!--/* Button to submit */-->
+        <input type="submit"/>
     </form>
     <!--/* Form End */-->
 
