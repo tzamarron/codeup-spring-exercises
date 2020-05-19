@@ -18,7 +18,7 @@ public class RollDiceController {
     // Post for game page
     @PostMapping("/roll-dice")
     // take guess value from main game page and store as guess
-    public String resultGame(@RequestParam(name = "guess") int guess, Model model){
+    public String resultGame(@RequestParam int guess, Model model){
         // Display message variable
         String message;
 

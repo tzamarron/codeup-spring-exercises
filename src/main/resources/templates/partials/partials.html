@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:fragment="head(title)">
     <meta charset=" UTF-8"/>
@@ -16,11 +17,12 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="/">Home</a>
-            <a class="nav-item nav-link" href="/posts/createPost">Create Post</a>
-            <span class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <ul class="navbar-nav">
+            <li><a class="nav-item nav-link" href="/">Home</a></li>
+            <li><a class="nav-item nav-link" href="/posts/createPost">Create Post</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
                     Bored? Click here!
                 </a>
                 <span class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -28,13 +30,21 @@
                     <a class="dropdown-item" href="/roll-dice">Lovelace Game</a>
                     <a class="dropdown-item" href="/roll-dice">Rock, Paper, Scissors</a>
                 </span>
-            </span>
-            <span class="nav-item mr-auto">
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item mx-2" sec:authorize="isAuthenticated()">
                 <form th:action="@{/logout}" th:method="post">
-                    <button class="nav-link" style="margin-top: 8px">Logout</button>
+                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
                 </form>
-            </span>
-        </div>
+            </li>
+            <li class="nav-item mx-2" sec:authorize="isAnonymous()">
+                <a href="/register">Register</a>
+            </li>
+            <li class="nav-item mx-2" sec:authorize="isAnonymous()">
+                <a href="/login">Login</a>
+            </li>
+        </ul>
     </div>
 </nav>
 
