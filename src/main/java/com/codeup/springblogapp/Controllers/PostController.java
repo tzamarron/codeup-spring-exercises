@@ -8,6 +8,7 @@ import com.codeup.springblogapp.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -87,7 +88,7 @@ public class PostController {
     // Method that uses Post Object from the forms in the posts/create.html
     public String newPost(@ModelAttribute Post post){
         // get User who is creating Post and add it to Post object
-        User user = userRepo.getOne(1L);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
 
         // Save Post object to the database
@@ -126,7 +127,7 @@ public class PostController {
     // Method that updates Post based on Post Object passed by form in posts/show.html
     public String editedPost(@ModelAttribute Post updatedPost,@PathVariable long id, Model model){
         // Get current User
-        User user = userRepo.getOne(1L);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         // Add ID passed by url and above User to Post object passed over
         updatedPost.setId(id);
