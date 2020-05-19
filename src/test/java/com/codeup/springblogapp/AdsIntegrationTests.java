@@ -139,7 +139,7 @@ public class AdsIntegrationTests {
         // Get the recent Post that matches the title
         Post existingPost = postRepo.findByTitle("post to be deleted");
 
-        // Makes a Post request to /ads/{id}/delete and expect a redirection to the Ads index
+        // Makes a Post request to /posts/{id}/delete and expect a redirection to the Post index
         this.mvc.perform(
                 post("/posts/" + existingPost.getId() + "/delete").with(csrf())
                         .session((MockHttpSession) httpSession)
