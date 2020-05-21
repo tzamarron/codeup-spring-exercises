@@ -54,21 +54,8 @@ public class PostController {
     // Method that uses id passed from posts/index.html and casts it to long
     public String getPost(@PathVariable long id, Model model){
 
-        // Find the post by id in the database
-        Post post = postRepo.getOne(id);
-
-        // User who is logged in
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        // Find out if user logged in is the user who created the Post
-        if (isPostOwner(id,user)){
-            post.getUser().setOwner(1);
-        } else {
-            post.getUser().setOwner(0);
-        }
-
         // find the post by id in database and send variable Post to html
-        model.addAttribute("post",post);
+        model.addAttribute("post",postRepo.getOne(id));
         return "posts/show";
 
     }
@@ -168,11 +155,6 @@ public class PostController {
 
         // Redirect to controller to repopulate posts on html
         return "redirect:/posts";
-    }
-
-    public Boolean isPostOwner(long id, User user){
-        Post post = postRepo.getOne(id);
-        return user.getUsername().equals( post.getUser().getUsername() );
     }
 
 }

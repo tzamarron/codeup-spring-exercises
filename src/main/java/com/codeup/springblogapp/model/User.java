@@ -21,27 +21,21 @@ public class User {
     @Column // Will be hashed so worries on being unique
     private String password;
 
-    @Column(nullable = false)
-    @Value("${some.key:0")
-    private int owner;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") // 1 User can have many Posts (1-to-many)
     private List<Post> posts;
 
     // Constructors
     public User(){};
 
-    public User(long id, String username, String email, int owner) {
+    public User(long id, String username, String email) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.owner = owner;
     }
 
-    public User(String username, String email, int owner) {
+    public User(String username, String email) {
         this.username = username;
         this.email = email;
-        this.owner = owner;
     }
 
     public User(User copy) {
@@ -49,7 +43,6 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
-        owner = copy.owner;
     }
 
     // Getters and Setters
@@ -82,10 +75,4 @@ public class User {
         this.password = password;
     }
 
-    public int getOwner() {
-        return owner;
-    }
-    public void setOwner(int owner) {
-        this.owner = owner;
-    }
 }
