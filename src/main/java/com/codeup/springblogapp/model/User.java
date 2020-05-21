@@ -1,5 +1,7 @@
 package com.codeup.springblogapp.model;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,7 +21,8 @@ public class User {
     @Column // Will be hashed so worries on being unique
     private String password;
 
-    @Column
+    @Column(nullable = false)
+    @Value("${some.key:0")
     private int owner;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") // 1 User can have many Posts (1-to-many)
