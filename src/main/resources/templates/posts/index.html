@@ -11,11 +11,11 @@
 <!--/* Main Container */-->
 <div class="pl-3">
 
-    <div class="row" th:each="post : ${posts}" id="post-body">
+    <div class="row" th:each="post : ${posts}">
         <!--/* Area to show all the posts
             Takes attribute from PostController/Line 43
             Cycles thru them and places info where stated */-->
-        <div class="my-5 col-9">
+        <div class="my-5 col-9" id="post-body">
             <h1 th:text="${post.title}"></h1>
             <div class="d-inline-block text-wrap text-truncate pl-4" th:utext="${post.description}"></div>
 
