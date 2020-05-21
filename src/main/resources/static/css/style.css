@@ -8,6 +8,7 @@
     height: 100px;
     width: 100vw;
     z-index: 1;
+    background-color: #E7E5D7;
 }
 
 #main_nav a, #main_nav button{
@@ -40,4 +41,9 @@
 
 #main-container {
     padding-top: 110px;
+    background-color: #CECCBE;
+}
+
+#post-body {
+    background-color: #E7E5D7;
 }
