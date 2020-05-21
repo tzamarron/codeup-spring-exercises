@@ -19,21 +19,26 @@ public class User {
     @Column // Will be hashed so worries on being unique
     private String password;
 
+    @Column
+    private int owner;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") // 1 User can have many Posts (1-to-many)
     private List<Post> posts;
 
     // Constructors
     public User(){};
 
-    public User(long id, String username, String email) {
+    public User(long id, String username, String email, int owner) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.owner = owner;
     }
 
-    public User(String username, String email) {
+    public User(String username, String email, int owner) {
         this.username = username;
         this.email = email;
+        this.owner = owner;
     }
 
     public User(User copy) {
@@ -41,6 +46,7 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
+        owner = copy.owner;
     }
 
     // Getters and Setters
@@ -48,7 +54,6 @@ public class User {
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -56,7 +61,6 @@ public class User {
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -64,7 +68,6 @@ public class User {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -72,8 +75,14 @@ public class User {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getOwner() {
+        return owner;
+    }
+    public void setOwner(int owner) {
+        this.owner = owner;
     }
 }

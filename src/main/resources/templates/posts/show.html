@@ -25,7 +25,8 @@
     </p>
     <br>
 
-    <div sec:authorize="isAuthenticated()">
+    <div th:if="${post.user.owner == '1'}">
+<!--    <div sec:authorize="isAuthenticated()">-->
 
         <!--/* Anchor tag that links to PostController/Line 105 */-->
         <a class="btn btn-primary" th:href="@{|/posts/${post.id}/edit|}">Update</a>
