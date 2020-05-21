@@ -7,32 +7,27 @@
 <nav th:replace="partials/partials.html :: navbar"></nav>
 
 <!--/* Main Container */-->
-<div id="main-container">
+<div id="main-container" class="d-flex justify-content-center">
 
     <!--/* Form to Create Post and submit it to PostContoller/Line 84 */-->
     <form th:action="@{/posts/createPost}" th:method="post" th:object="${post}">
 
         <!--/* Title Input */-->
-        <label for="post-title"> Title:
-            <input th:field="*{title}" id="post-title"/>
-        </label>
-        <br />
+        <label for="post-title"> Title: </label>
+        <br/>
+        <input th:field="*{title}" id="post-title"/>
+        <br/>
 
         <!--/* Description Input */-->
-        <label for="post-body"> Description:
-            <textarea th:field="*{description}" id="post-body"></textarea>
-        </label>
-        <br />
+        <label for="post-body"> Description: </label>
+        <br/>
+        <textarea th:field="*{description}" id="post-body" rows="10" cols="100"></textarea>
+        <br/>
 
         <!--/* Button to submit */-->
-        <input type="submit" />
+        <input type="submit" value="Create Post"/>
     </form>
     <!--/* Form End */-->
-
-
-
-
-
 
 
     <!--/* Footer Partial */-->
