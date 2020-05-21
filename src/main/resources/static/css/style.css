@@ -27,6 +27,10 @@ body {
     color: black;
 }
 
+#nav-drop {
+    background-color: #E7E5D7;
+}
+
 /**/
 /** CSS for Jumbotron **/
 /**/
