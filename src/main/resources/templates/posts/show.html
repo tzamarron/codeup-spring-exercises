@@ -25,7 +25,7 @@
     </p>
     <br>
 
-    <div th:if="${post.user.owner == '1'}">
+    <div th:if="${post.user.owner == '1' && post.user.owner != null}">
 <!--    <div sec:authorize="isAuthenticated()">-->
 
         <!--/* Anchor tag that links to PostController/Line 105 */-->
