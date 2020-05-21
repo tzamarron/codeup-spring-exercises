@@ -10,69 +10,70 @@
 <!--/* Main Container */-->
 <div class="pl-3" id="main-container">
 
-    <!--/* Main Header */-->
+    <!--/* Row */-->
+    <div class="row">
 
+        <!--/* Blog Body information filled out from Model sent from
+                PostController/Line */-->
+        <div class="col-9 pl-5 pr-3">
+            <h2 th:text="${post.title}"></h2>
+            <p style="padding-left: 2rem" th:text="${post.description}"></p>
+        </div>
 
-    <!--/* Using attribute passed from PostController/Line 68
-    set the Posts title and description with inline styling */-->
-    <h2 th:text="${post.title}"></h2>
-    <p style="padding-left: 2rem" th:text="${post.description}"></p>
-    <p>Post created by:
-        <br>
-        <span th:text="${post.user.username}"></span>
-        <br>
-        <a th:text="${post.user.email}" th:href="@{|mailto:${post.user.email}|}"></a>
-    </p>
-    <br>
+        <!--/* Blog Owner information filled out from Model sent from
+                PostController/Line */-->
+        <div class="col-3">
+            <h5>Post created by: </h5>
+                <p th:text="${post.user.username}"></p>
+            <img src="http://placeholder.pics/svg/200/DEDEDE/555555/User%20Pic" alt=" User Pic">
+            <br />
+            <ul class="list-unstyled d-flex">
+                <li class="mx-2"><a href="https://www.instagram.com"><i class="fab fa-instagram-square"></i></a></li>
+                <li class="mx-2"><a href="https://www.twitter.com"><i class="fab fa-twitter-square"></i></a></li>
+                <li class="mx-2"><a href="https://www.facebook.com"><i class="fab fa-facebook-square"></i></a></li>
+            </ul>
+        </div>
 
-    <div sec:authorize="isAuthenticated()">
+        <!--/* If Authorized then buttons can be seen */-->
+        <div sec:authorize="isAuthenticated()">
 
-        <!--/* Anchor tag that links to PostController/Line 105 */-->
-        <a class="btn btn-primary" th:href="@{|/posts/${post.id}/edit|}">Update</a>
+            <!--/* Anchor tag that links to PostController/Line 105 */-->
+            <a class="btn btn-primary" th:href="@{|/posts/${post.id}/edit|}">Update</a>
 
-        <!--/* In a div (easy to style) a button is placed to open a model
-            inside the model there is a form to submit the Post's id to
-            PostController/Line 122 */-->
+            <!--/* Button to open a model inside the model there is a form to submit the Post's id to
+                PostController/Line 122 */-->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deletePost">
+                Delete
+            </button>
 
-
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deletePost">
-            Delete
-        </button>
-
-        <!--/* Modal */-->
-        <div>
-            <div class="modal fade" id="deletePost" tabindex="-1" role="dialog" aria-labelledby="deleteConfirm"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deleteConfirm">Are you sure you want to delete this post?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Doing this is permanent and you will be unable to get it back!</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <form action="/posts/delete" method="post">
-                                <button type="submit" name="id" th:value="${post.id}"> Confirm Delete</button>
-                            </form>
+            <!--/* Modal */-->
+            <div>
+                <div class="modal fade" id="deletePost" tabindex="-1" role="dialog" aria-labelledby="deleteConfirm"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteConfirm">Are you sure you want to delete this
+                                    post?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Doing this is permanent and you will be unable to get it back!</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <form action="/posts/delete" method="post">
+                                    <button type="submit" name="id" th:value="${post.id}"> Confirm Delete</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!--/* Other example */-->
-    <!--/*    <div>*/-->
-    <!--/*        <form method="post">*/-->
-    <!--/*            <a class="btn" th:formaction="'/posts/delete/' + ${post.id}">Delete Post</a>*/-->
-    <!--/*        </form>*/-->
-    <!--/*    </div>*/-->
-
 
     <!--/* Scripts Partial*/-->
     <div th:replace="partials/partials :: JS"></div>
