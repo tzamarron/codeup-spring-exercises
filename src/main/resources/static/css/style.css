@@ -10,7 +10,7 @@
     z-index: 1;
 }
 
-#main_nav a {
+#main_nav a, #main_nav button{
     color: black;
     text-decoration: none;
 }
