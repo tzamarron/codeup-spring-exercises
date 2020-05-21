@@ -19,7 +19,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav">
             <li><a class="nav-item nav-link" href="/">Home</a></li>
-            <li><a class="nav-item nav-link" href="/posts/createPost">Create Post</a></li>
+            <li sec:authorize="isAuthenticated()"><a class="nav-item nav-link" href="/posts/createPost">Create Post</a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
