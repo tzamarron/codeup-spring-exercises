@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<!--/* Head Partial */-->
 <head th:replace="partials/partials :: head('Post')"></head>
+<!--/* Head Partial */-->
 <body>
 <!--/* Navbar Partial */-->
 <nav th:replace="partials/partials :: navbar"></nav>
@@ -53,8 +53,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="deleteConfirm">Are you sure you want to delete this
-                                    post?</h5>
+                                <h5 class="modal-title" id="deleteConfirm">Are you sure you want to delete this post?</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -74,6 +73,8 @@
             </div>
         </div>
     </div>
+
+    Update on : <span th:value="${date}"></span>
 
     <!--/* Scripts Partial*/-->
     <div th:replace="partials/partials :: JS"></div>

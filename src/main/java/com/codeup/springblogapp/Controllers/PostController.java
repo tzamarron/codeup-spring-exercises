@@ -16,6 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Date;
+import java.util.zip.DataFormatException;
+
 
 @Controller
 public class PostController {
@@ -133,6 +136,7 @@ public class PostController {
 
         // Save updatedPost to model to send to html
         model.addAttribute("post",updatedPost);
+        model.addAttribute("date", new Date());
 
         // Go to Show post Controller
         return "redirect:/posts/" + id;
@@ -152,6 +156,7 @@ public class PostController {
 
         // Delete retrieved Post from database
         postRepo.delete(post);
+
 
         // Redirect to controller to repopulate posts on html
         return "redirect:/posts";
