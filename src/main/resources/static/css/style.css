@@ -57,3 +57,22 @@ body {
 
 /*color for social links*/
 /*#4b8e48*/
+
+/**/
+/** CSS for Wow Page **/
+/**/
+
+#shadowlands {
+    color: aliceblue; 
+    text-align:center; 
+    background-image: url("../img/Icecrown.jpg"); 
+    background-size: cover;
+}
+
+#rareName, #rareName1 {
+    color:crimson; 
+    font-style:italic;}
+
+#shadowlands h3 {
+    text-decoration: underline;
+}

@@ -1,0 +1,167 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="partials/partials :: head('Pre Patch Rares')"></head>
+<body id="shadowlands">
+    <div>
+        <h1><span id="rareName"></span> spawning in <span id="time"></span></h1>
+        <h3>Then it's <span id="rareName1"></span></h3>
+    </div>
+
+    <div>
+        <h3>These is the rare order:</h3>
+        <div id="raresHere"></div>
+    </div>
+
+    <div id="startHere">
+        <input type="type" name="name" id="name" value="" />
+        <button>push</button>
+    </div>
+
+    <script type="text/javascript">
+        let rareList = [
+            "Noth the Plaguebringer",
+            "Patchwerk",
+            "Blood Queen Lana'thel",
+            "Professor Putricide",
+            "Lady Deathwhisper",
+            "Skaldi the Ruthless",
+            "Ingvar the Plunderer",
+            "Prince Keleseth",
+            "The Black Knight",
+            "Bronjam",
+            "Scourgelord Tyrannus",
+            "Forgemaster Garfrost",
+            "Marwyn",
+            "Falric",
+            "The Prophet Tharon'ja",
+            "Novos the Summoner",
+            "Trollgore",
+            "Krik'thir the Gatewatcher",
+            "Prince Taldaram",
+            "Elder Nadox"
+        ];
+        var whoIsIt;
+        var you = document.getElementById("rareName");
+        var them = document.getElementById("rareName1");
+        var push = document.getElementById('startHere');
+        var rareOrder = document.getElementById("raresHere")
+
+        listAllRares();
+
+        function CountDownTimer(duration, granularity) {
+            this.duration = duration;
+            this.granularity = granularity || 1000;
+            this.tickFtns = [];
+            this.running = false;
+        }
+
+        CountDownTimer.prototype.start = function() {
+            if (this.running) {
+                return;
+            }
+            this.running = true;
+            var start = Date.now(),
+                that = this,
+                diff, obj;
+
+            (function timer() {
+                diff = that.duration - (((Date.now() - start) / 1000) | 0);
+
+                if (diff > 0) {
+                setTimeout(timer, that.granularity);
+                } else {
+                diff = 0;
+                that.running = false;
+                }
+
+                obj = CountDownTimer.parse(diff);
+                that.tickFtns.forEach(function(ftn) {
+                ftn.call(this, obj.minutes, obj.seconds);
+                }, that);
+            }());
+        };
+
+        CountDownTimer.prototype.onTick = function(ftn) {
+            if (typeof ftn === 'function') {
+                this.tickFtns.push(ftn);
+            }
+            return this;
+            };
+
+        CountDownTimer.prototype.expired = function() {
+            return !this.running;
+            };
+
+        CountDownTimer.parse = function(seconds) {
+            return {
+                'minutes': (seconds / 60) | 0,
+                'seconds': (seconds % 60) | 0
+            };
+        };
+
+        document.querySelector('button').addEventListener('click', function () {
+            firstUp();
+            gis();
+        });
+
+        function gis() {
+            var display = document.querySelector('#time'),
+                timer = new CountDownTimer(1200),
+                timeObj = CountDownTimer.parse(5);
+
+            format(timeObj.minutes, timeObj.seconds);
+            
+            timer.onTick(format).onTick(restart).start();
+
+            function restart() {
+                if (this.expired()) {
+                    setTimeout(function() { 
+                        timer.start(); 
+                        you.innerHTML = nameOfRare(whoIsIt);
+                        them.innerHTML = rareList[whoIsIt];
+                    }, 1000);
+                }
+            }
+            
+    
+            function format(minutes, seconds) {
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = minutes + ':' + seconds;
+            }
+        };
+
+        function firstUp() {
+            var me = document.getElementById("name");
+            for (let i = 0; i < rareList.length; i++) {
+                if( rareList[i] === me.value ){
+                    you.innerHTML = me.value;
+                    whoIsIt = i + 1;
+                    them.innerHTML = rareList[whoIsIt];
+                    me.value = "";
+                    push.remove();
+                    break;
+                }
+            }
+        }
+
+        function nameOfRare( num ){
+            if(num === rareList.length){
+                console.log("inside");
+                whoIsIt = 1;
+                return rareList[0];
+            }
+
+            whoIsIt += 1;
+            return rareList[num];
+        }
+        
+        function listAllRares(){
+            var template = "<div>~rare~</div>";
+            rareList.forEach(rare => {
+                rareOrder.insertAdjacentHTML("beforeend", template.replace(/~rare~/, rare))
+            });
+        }
+
+    </script>
+</body>
+</html>
